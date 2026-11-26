@@ -1,26 +1,126 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ==========================================================================
+   DESIGN TOKENS
+   Every colour, font, radius and shadow of the site is defined here.
+   Tailwind v4 turns each token into utility classes automatically, e.g.
+   --color-canvas  →  bg-canvas, text-canvas, border-canvas
+   --text-display  →  text-display
+   Change a value here and it changes everywhere.
+   ========================================================================== */
 
+/* Fonts: the variables are set by next/font in layout.tsx.
+   "inline" is needed because they are only known at runtime. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, "SFMono-Regular", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  /* --- Surfaces (dark, slightly cool) ---------------------------------- */
+  --color-canvas: #0a0c10; /* page background */
+  --color-surface-1: #0f1217; /* sections, footer */
+  --color-surface-2: #151922; /* cards */
+  --color-surface-3: #1c2130; /* hovered / raised cards */
+
+  /* --- Lines ------------------------------------------------------------ */
+  --color-line: rgb(255 255 255 / 0.06);
+  --color-line-strong: rgb(255 255 255 / 0.12);
+
+  /* --- Text (all pass WCAG AA on every surface) ------------------------- */
+  --color-fg: #e8eaed; /* primary text      ~16:1 */
+  --color-fg-muted: #9aa1ad; /* secondary text    ~7.5:1 */
+  --color-fg-subtle: #838a96; /* labels, meta text ~5.6:1 */
+
+  /* --- Accents ---------------------------------------------------------- */
+  --color-accent: #6ee7c8; /* mint: links, focus, highlights */
+  --color-accent-strong: #34d3ad; /* hover state */
+  --color-accent-fg: #04241c; /* text ON accent buttons (~11:1) */
+  --color-warm: #f5b86b; /* amber: used rarely */
+
+  /* --- Fluid type scale (scales smoothly from 375px to 1920px) ---------- */
+  --text-display: clamp(2.5rem, 1.6rem + 4.5vw, 5.5rem);
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.02em;
+
+  --text-h1: clamp(2.125rem, 1.6rem + 2.6vw, 3.75rem);
+  --text-h1--line-height: 1.08;
+  --text-h1--letter-spacing: -0.015em;
+
+  --text-h2: clamp(1.75rem, 1.4rem + 1.6vw, 2.75rem);
+  --text-h2--line-height: 1.12;
+  --text-h2--letter-spacing: -0.01em;
+
+  --text-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-h3--line-height: 1.25;
+
+  --text-lead: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  --text-lead--line-height: 1.6;
+
+  --text-label: 0.75rem; /* mono "system labels" like // 01 — projekte */
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0.08em;
+
+  /* --- Radius ----------------------------------------------------------- */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* --- Shadows ---------------------------------------------------------- */
+  --shadow-glow: 0 0 0 1px rgb(110 231 200 / 0.25), 0 8px 40px -12px rgb(110 231 200 / 0.35);
+  --shadow-card: 0 1px 0 0 rgb(255 255 255 / 0.04) inset, 0 20px 40px -24px rgb(0 0 0 / 0.6);
+
+  /* --- Motion ----------------------------------------------------------- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   BASE STYLES
+   ========================================================================== */
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-fg antialiased;
+  }
+
+  /* German has long compound words ("Anwendungsentwicklung").
+     hyphens:auto uses <html lang="de"> to break them correctly
+     instead of overflowing on small screens. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    hyphens: auto;
+    overflow-wrap: break-word;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Visible keyboard focus everywhere (accessibility) */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: rgb(110 231 200 / 0.25);
+    color: var(--color-fg);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Smooth scrolling only for people who have not asked for reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
