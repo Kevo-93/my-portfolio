@@ -68,11 +68,72 @@
   --radius-lg: 16px;
 
   /* --- Shadows ---------------------------------------------------------- */
-  --shadow-glow: 0 0 0 1px rgb(110 231 200 / 0.25), 0 8px 40px -12px rgb(110 231 200 / 0.35);
+  --shadow-glow:
+    0 0 0 1px rgb(110 231 200 / 0.25), 0 8px 40px -12px rgb(110 231 200 / 0.35);
   --shadow-card: 0 1px 0 0 rgb(255 255 255 / 0.04) inset, 0 20px 40px -24px rgb(0 0 0 / 0.6);
 
   /* --- Motion ----------------------------------------------------------- */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* CSS entrance animations (run without JavaScript).
+     "rise" only moves – it never hides the element – so the big hero
+     headline is visible immediately (important for the LCP metric). */
+  --animate-rise: rise 0.9s var(--ease-out-expo) both;
+  --animate-fade-up: fade-up 0.8s var(--ease-out-expo) both;
+  --animate-page-in: page-in 0.5s var(--ease-out-expo) both;
+
+  @keyframes rise {
+    from {
+      transform: translateY(20px);
+    }
+    to {
+      transform: none;
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes page-in {
+    from {
+      transform: translateY(8px);
+    }
+    to {
+      transform: none;
+    }
+  }
+}
+
+/* ==========================================================================
+   CUSTOM UTILITIES
+   ========================================================================== */
+
+/* Subtle dot grid ("data field") used in the hero and project placeholders */
+@utility dot-grid {
+  background-image: radial-gradient(rgb(255 255 255 / 0.08) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+/* Fades an element out towards its edges */
+@utility fade-mask {
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 35%, #000 35%, transparent 100%);
+}
+
+/* Soft mint glow; position is updated by <PointerGlow /> on desktop */
+@utility pointer-glow {
+  background: radial-gradient(
+    560px circle at var(--glow-x, 78%) var(--glow-y, 18%),
+    rgb(110 231 200 / 0.11),
+    transparent 65%
+  );
 }
 
 /* ==========================================================================
@@ -122,5 +183,18 @@
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
+  }
+}
+
+/* Reduced motion: switch off all CSS animations and transitions.
+   (Motion animations are handled separately by <MotionProvider />.) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

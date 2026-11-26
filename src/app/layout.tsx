@@ -1,6 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import type { ReactNode } from "react";
 
+import { MotionProvider } from "@/components/animations/MotionProvider";
+import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
+import { SkipLink } from "@/components/layout/SkipLink";
 import { siteConfig } from "@/config/site";
 
 import "./globals.css";
@@ -47,11 +52,23 @@ export const viewport: Viewport = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
-    <html lang="de" className={`${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable}`}>
-      <body className="min-h-dvh">{children}</body>
+    <html
+      lang="de"
+      className={`${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable}`}
+    >
+      <body className="flex min-h-dvh flex-col">
+        <SkipLink />
+        <MotionProvider>
+          <Header />
+          <main id="main" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </MotionProvider>
+      </body>
     </html>
   );
 }
