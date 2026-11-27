@@ -14,8 +14,11 @@ export function ContactCta() {
     <Section labelledBy="contact-cta-title" className="border-t border-line">
       <Reveal>
         <div className="relative isolate overflow-hidden rounded-lg border border-line bg-surface-2 px-6 py-14 shadow-card sm:px-12 md:py-20">
-          <div aria-hidden="true" className="dot-grid fade-mask absolute inset-0 -z-10 opacity-60" />
-          <div aria-hidden="true" className="pointer-glow absolute inset-0 -z-10" />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 -z-10 dot-grid fade-mask opacity-60"
+          />
+          <div aria-hidden="true" className="absolute inset-0 -z-10 pointer-glow" />
 
           <div className="mx-auto max-w-2xl text-center">
             <SectionLabel index="04">{contact.label}</SectionLabel>

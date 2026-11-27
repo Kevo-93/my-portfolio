@@ -1,11 +1,5 @@
 export type SkillCategoryId =
-  | "frontend"
-  | "seo"
-  | "backend"
-  | "databases"
-  | "cloud"
-  | "ai"
-  | "tools";
+  "frontend" | "seo" | "backend" | "databases" | "cloud" | "ai" | "tools";
 
 export type SkillCategory = {
   id: SkillCategoryId;

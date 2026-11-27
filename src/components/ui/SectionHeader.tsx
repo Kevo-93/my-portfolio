@@ -13,7 +13,14 @@ type SectionHeaderProps = {
   className?: string;
 };
 
-export function SectionHeader({ index, label, title, titleId, intro, className }: SectionHeaderProps) {
+export function SectionHeader({
+  index,
+  label,
+  title,
+  titleId,
+  intro,
+  className,
+}: SectionHeaderProps) {
   return (
     <Reveal className={cn("max-w-2xl", className)}>
       <SectionLabel index={index}>{label}</SectionLabel>

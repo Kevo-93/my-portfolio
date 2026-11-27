@@ -1,41 +1,26 @@
-import {
-  ArrowRight,
-  Cloud,
-  Database,
-  Monitor,
-  Search,
-  Server,
-  Sparkles,
-  Wrench,
-  type LucideIcon,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 import { Reveal } from "@/components/animations/Reveal";
 import { Section } from "@/components/layout/Section";
+import { categoryIcons } from "@/components/skills/category-icons";
 import { Badge } from "@/components/ui/Badge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { homeContent } from "@/data/home";
 import { skillCategories } from "@/data/skills";
-import type { SkillCategoryId } from "@/types/skill";
-
-/* Icons live here (not in the data file) so data stays plain text */
-const categoryIcons: Record<SkillCategoryId, LucideIcon> = {
-  frontend: Monitor,
-  seo: Search,
-  backend: Server,
-  databases: Database,
-  cloud: Cloud,
-  ai: Sparkles,
-  tools: Wrench,
-};
 
 export function SkillsOverview() {
   const { skills: text } = homeContent;
 
   return (
     <Section labelledBy="skills-title" className="border-t border-line bg-surface-1/40">
-      <SectionHeader index="02" label={text.label} title={text.title} titleId="skills-title" intro={text.intro} />
+      <SectionHeader
+        index="02"
+        label={text.label}
+        title={text.title}
+        titleId="skills-title"
+        intro={text.intro}
+      />
 
       {/* 7 categories + 1 link card = an even 2×4 grid on large screens */}
       <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

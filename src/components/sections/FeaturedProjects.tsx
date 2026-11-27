@@ -13,7 +13,13 @@ export function FeaturedProjects() {
   return (
     <Section labelledBy="projects-title" className="border-t border-line">
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <SectionHeader index="01" label={text.label} title={text.title} titleId="projects-title" intro={text.intro} />
+        <SectionHeader
+          index="01"
+          label={text.label}
+          title={text.title}
+          titleId="projects-title"
+          intro={text.intro}
+        />
         <Reveal className="shrink-0">
           <ButtonLink href="/projekte" variant="secondary" icon="arrow">
             Alle Projekte

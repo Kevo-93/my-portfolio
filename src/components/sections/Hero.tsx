@@ -16,7 +16,7 @@ export function Hero() {
 
   return (
     <section aria-labelledby="hero-title" className="relative isolate overflow-hidden">
-      <div aria-hidden="true" className="dot-grid fade-mask absolute inset-0 -z-10" />
+      <div aria-hidden="true" className="absolute inset-0 -z-10 dot-grid fade-mask" />
       <PointerGlow className="-z-10" />
 
       <Container className="grid gap-12 pt-16 pb-20 md:pt-24 lg:grid-cols-[1.35fr_1fr] lg:items-center lg:gap-16 lg:pt-32 lg:pb-28">

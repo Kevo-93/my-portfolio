@@ -55,10 +55,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html
-      lang="de"
-      className={`${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable}`}
-    >
+    <html lang="de" className={`${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable}`}>
       <body className="flex min-h-dvh flex-col">
         <SkipLink />
         <MotionProvider>

@@ -43,7 +43,7 @@ export function PointerGlow({ className }: { className?: string }) {
     <div
       ref={ref}
       aria-hidden="true"
-      className={cn("pointer-glow pointer-events-none absolute inset-0", className)}
+      className={cn("pointer-events-none absolute inset-0 pointer-glow", className)}
     />
   );
 }

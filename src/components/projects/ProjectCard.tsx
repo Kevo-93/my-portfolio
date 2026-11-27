@@ -5,20 +5,9 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
 import type { Project } from "@/types/project";
 
-const MAX_BADGES = 4;
+import { ProjectPlaceholder } from "./ProjectPlaceholder";
 
-/** Shown when a project has no screenshot yet */
-function ProjectPlaceholder({ slug }: { slug: string }) {
-  return (
-    <div aria-hidden="true" className="absolute inset-0">
-      <div className="dot-grid fade-mask absolute inset-0" />
-      <div className="pointer-glow absolute inset-0 opacity-70" />
-      <span className="absolute bottom-4 left-5 font-mono text-xs text-fg-subtle">
-        {`~/projekte/${slug}`}
-      </span>
-    </div>
-  );
-}
+const MAX_BADGES = 4;
 
 export function ProjectCard({ project }: { project: Project }) {
   const cover = project.images[0];

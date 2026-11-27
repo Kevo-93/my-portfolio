@@ -8,8 +8,13 @@ import { Container } from "./Container";
 const linkClass =
   "inline-flex min-h-9 items-center text-sm text-fg-muted transition-colors hover:text-fg";
 
-export function Footer() {
-  const year = new Date().getFullYear();
+async function getCurrentYear() {
+  "use cache";
+  return new Date().getFullYear();
+}
+
+export async function Footer() {
+  const year = await getCurrentYear();
 
   const socials = [
     { label: "GitHub", href: siteConfig.socials.github },

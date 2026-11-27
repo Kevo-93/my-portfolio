@@ -23,7 +23,8 @@ export const homeContent = {
   skills: {
     label: "Kenntnisse",
     title: "Womit ich arbeite",
-    intro: "Technologien und Themen aus meiner Ausbildung, meinem Berufsalltag und eigenen Projekten.",
+    intro:
+      "Technologien und Themen aus meiner Ausbildung, meinem Berufsalltag und eigenen Projekten.",
   },
 
   about: {

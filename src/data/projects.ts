@@ -48,8 +48,7 @@ export const projects: readonly Project[] = [
   {
     slug: "datenauswertung-bigquery",
     title: "Datenauswertungen mit Google BigQuery",
-    summary:
-      "Entwicklung von SQL-Abfragen und Auswertungen auf Basis von Google Cloud BigQuery.",
+    summary: "Entwicklung von SQL-Abfragen und Auswertungen auf Basis von Google Cloud BigQuery.",
     objective: "[Ziel ergänzen – z. B. welche Fragen die Auswertungen beantworten sollten]",
     problem: "[Ausgangssituation ergänzen – ohne vertrauliche Details]",
     solution: "[Deine Lösung ergänzen]",
